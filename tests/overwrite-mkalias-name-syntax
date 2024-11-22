@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+mkalias name syntax1
+mkalias name syntax1
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syntax1'" ]
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syntax1' (syntax1)" ]
+
+mkalias name syntax2
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syntax2'" ]
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syntax2' (syntax2)" ]

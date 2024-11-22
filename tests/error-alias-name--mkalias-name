@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+alias name=' '
+mkalias name
+result="$?"
+
+aliases="$(ALIAS)"
+mkaliases="$(MKALIAS)"
+
+# mkalias: error: command not given and cannot be decucted form the existing alias
+[ "${result}" -eq 2 ]

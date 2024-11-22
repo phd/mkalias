@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+alias name='syn1 tax1'
+mkalias name
+mkalias name
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syn1 tax1'" ]
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syn1 tax1' (syn1)" ]
+
+alias name='syn2 tax2'
+mkalias name
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syn2 tax2'" ]
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syn2 tax2' (syn2)" ]

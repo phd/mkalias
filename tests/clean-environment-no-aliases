@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+aliases="$(ALIAS)"
+[ -z "${aliases}" ]
+
+aliases2="$(alias)"
+echo "alias={${aliases2}}"
+[ -z "${aliases2}" ]
+
+mkaliases="$(MKALIAS)"
+[ -z "${mkaliases}" ]
+
+mkaliases2="$(mkalias)"
+echo "mkalias={${mkaliases2}}"
+[ -z "${mkaliases2}" ]

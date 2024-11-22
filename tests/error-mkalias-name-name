@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+mkalias name name
+result="$?"
+
+aliases="$(ALIAS)"
+mkaliases="$(MKALIAS)"
+
+# mkalias: error: alias name same as command causes recursion
+[ "${result}" -eq 3 ]

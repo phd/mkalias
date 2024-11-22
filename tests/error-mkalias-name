@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+mkalias name
+result="$?"
+
+aliases="$(ALIAS)"
+mkaliases="$(MKALIAS)"
+
+# mkalias: error: no new syntax given, but alias does not exist
+[ "${result}" -eq 1 ]

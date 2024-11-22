@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+mkalias name1 'syn1 tax1'
+mkalias name2 'syn2 tax2'
+mkalias name3 'syn3 tax3'
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name1='syn1 tax1'|alias name2='syn2 tax2'|alias name3='syn3 tax3'" ]
+
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name1='syn1 tax1' (syn1)|alias name2='syn2 tax2' (syn2)|alias name3='syn3 tax3' (syn3)" ]

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+alias g='git'
+mkalias g
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias g='git'" ]
+
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias g='git' (git)" ]

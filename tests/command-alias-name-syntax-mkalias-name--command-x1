@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+alias name='syntax'
+mkalias name '' command
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syntax'" ]
+
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syntax' (command)" ]

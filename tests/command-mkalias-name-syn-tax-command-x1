@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+mkalias name 'syn tax' command
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias name='syn tax'" ]
+
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias name='syn tax' (command)" ]

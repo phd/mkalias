@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+alias g='clear && git'
+mkalias g '' git
+
+aliases="$(ALIAS)"
+[ "${aliases}" = "alias g='clear && git'" ]
+
+mkaliases="$(MKALIAS)"
+[ "${mkaliases}" = "alias g='clear && git' (git)" ]

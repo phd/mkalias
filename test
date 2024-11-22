@@ -1,0 +1,57 @@
+#!/bin/bash -e
+
+C_RED=$'\e[31m'
+C_GREEN=$'\e[32m'
+C_YELLOW=$'\e[33m'
+C_BLUE=$'\e[34m'
+C_NONE=$'\e[39m'
+
+VERBOSE='0'
+if [ "$1" = '-v' ]; then
+    VERBOSE='1'
+    shift
+fi
+TEST="$1"
+
+count='0'
+passed='0'
+failed='0'
+
+function RunTest {
+    ((count++)) || true
+    result='0'
+    if [ "${VERBOSE}" -eq '1' ]; then
+        echo -e "[${C_BLUE}TEST${C_NONE}] $1"
+    fi
+    output=$(env -i bash -c "
+        function ALIAS   { local list=\$(  alias | tr '\n' '|' | sed 's/.$//'); echo   \"alias={\${list}}\" > /dev/stderr; echo \"\${list}\"; }
+        function MKALIAS { local list=\$(mkalias | tr '\n' '|' | sed 's/.$//'); echo \"mkalias={\${list}}\" > /dev/stderr; echo \"\${list}\"; }
+        source ../mkalias.sh
+        source '$1'
+    " 2>&1) || result="$?"
+    if [ "${VERBOSE}" -eq '1' ]; then
+        echo "${output}"
+        echo -e "[${C_BLUE}EXIT${C_NONE}] $result"
+    fi
+    if [ "${result}" -eq '0' ]; then
+        ((passed++)) || true
+        echo -n "[${C_GREEN}PASS${C_NONE}]"
+    else
+        ((failed++)) || true
+        echo -n "[${C_RED}FAIL${C_NONE}]"
+    fi
+    echo " $1"
+}
+
+cd tests
+if [ -n "${TEST}" ]; then
+    RunTest "${TEST}"
+else
+    for t in $(ls -1 | LANG=C sort); do
+        RunTest "${t}"
+    done
+fi
+
+echo "${count} TESTS: ${passed} PASSED, ${failed} FAILED"
+
+[ "${failed}" -eq '0' ]
