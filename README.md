@@ -18,13 +18,11 @@ source /absolute/or/./relative/path/to/mkalias.sh
 Usage
 -----
 
-``` bash
+```
 mkalias NAME [SYNTAX [COMMAND]]
 mkalias [-p [NAME]]
 mkalias (--help|-h)
-```
 
-```
     NAME       The Name of the alias, required.
     SYNTAX     New syntax for alias, optional.
                If given, mkalias creates a new alias NAME for that syntax.

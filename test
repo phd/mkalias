@@ -11,7 +11,6 @@ if [ "$1" = '-v' ]; then
     VERBOSE='1'
     shift
 fi
-TEST="$1"
 
 count='0'
 passed='0'
@@ -44,11 +43,14 @@ function RunTest {
 }
 
 cd tests
-if [ -n "${TEST}" ]; then
-    RunTest "${TEST}"
-else
+if [ -z "$1" ]; then
     for t in $(ls -1 | LANG=C sort); do
         RunTest "${t}"
+    done
+else
+    while [ -n "$1" ]; do
+        RunTest "$1"
+        shift
     done
 fi
 
